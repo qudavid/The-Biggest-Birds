@@ -3,7 +3,7 @@ import os
 import openai
 
 openai.organization = "org-OcpyA7VqpEkcFM2BWDVDBff3"
-openai.api_key = "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"
+openai.api_key = "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"
 
 openai.Model.list()
 

@@ -2,8 +2,8 @@ from flask import Flask, request, render_template
 import os
 import openai
 
-openai.organization = ""
-openai.api_key = ""
+openai.organization = "org-OcpyA7VqpEkcFM2BWDVDBff3"
+openai.api_key = "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"
 
 openai.Model.list()
 
@@ -15,7 +15,7 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     response = openai.Image.create(
-    prompt="A cute baby sea otter",
+    prompt="A cute octopus",
     n=2,
     size="1024x1024"
     )
@@ -28,8 +28,10 @@ def get_prompt_from_user():
     completion = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "user", "content": message}
-        ]
+            {"role": "user", "content": "Write a children's story that rhymes about" +
+              message + "with a moral or lesson at the end of the story."}
+        ],
+        temperature=1.95
     )
     return completion.choices[0].message
 

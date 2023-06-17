@@ -3,7 +3,7 @@ import os
 import openai
 
 openai.organization = "org-OcpyA7VqpEkcFM2BWDVDBff3"
-openai.api_key = os.getenv("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")
+openai.api_key = "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"
 
 app = Flask(__name__)
 
@@ -20,7 +20,9 @@ def get_prompt_from_user():
         prompt=message,
         max_tokens=100
     )
-    return response
+    gpt4_response = response.choices[0].text.strip()
+
+    return gpt4_response
 
 
 if __name__ == "__main__":

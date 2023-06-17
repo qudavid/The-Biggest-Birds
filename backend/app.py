@@ -3,7 +3,9 @@ import os
 import openai
 
 openai.organization = "org-OcpyA7VqpEkcFM2BWDVDBff3"
-openai.api_key = "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"
+openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.Model.list()
+
 
 app = Flask(__name__)
 

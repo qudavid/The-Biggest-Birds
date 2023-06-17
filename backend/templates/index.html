@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form class="" action="#" method="post">
+
+        <div class="mb-3">
+          <label for="prompt" class="form-label">Enter your Prompt</label>
+          <input type="text" class="form-control" name="prompt" id="prompt" placeholder="A pencil illustration of a money driving a bicycle" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">GENERATE IMAGE</button>
+
+    </form>
+
+    </form>
+
+    <br>
+    <br>
+
+    <div class="row">
+        {% for image in images %}
+        <div class="col-lg-4">
+          <img src="{{image}}" class="img-fluid" alt="OpenAI DALLE2 Image Generation">
+        </div>
+        {% endfor %}
+      </div>
+          
+</body>
+</html>

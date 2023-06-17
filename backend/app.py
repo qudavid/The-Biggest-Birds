@@ -15,7 +15,12 @@ def index():
 @app.route('/message', methods=['GET'])
 def get_prompt_from_user():
     message = request.args.get('message')
-    return message
+    response = openai.Completion.create(
+        engine="text-davinci-003",
+        prompt=message,
+        max_tokens=100
+    )
+    return response
 
 
 if __name__ == "__main__":

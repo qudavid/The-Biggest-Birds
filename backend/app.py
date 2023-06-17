@@ -2,8 +2,8 @@ from flask import Flask, request, render_template
 import os
 import openai
 
-openai.organization = "org-eLa1AesrPBLo5REyigH7wlXk"
-openai.api_key = "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"
+openai.organization = ""
+openai.api_key = ""
 
 openai.Model.list()
 

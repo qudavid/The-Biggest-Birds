@@ -4,10 +4,10 @@ import openai
 from hume import HumeBatchClient
 from hume.models.config import LanguageConfig
 
-HUME_API_KEY = ""
+HUME_API_KEY = "DszRVXebgKf0A5EdYEqjgP3edtjVusiVYCw8g5FThj9BmxAu"
 
-openai.organization = ""
-openai.api_key = ''
+openai.organization = "org-OcpyA7VqpEkcFM2BWDVDBff3"
+openai.api_key = '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'
 
 openai.Model.list()
 
@@ -109,6 +109,7 @@ stringifier = Stringifier()
 for emotion_embedding in emotion_embeddings:
     emotion_scores = [emotion["score"] for emotion in emotion_embedding]
     text = stringifier.scores_to_text(emotion_scores)
+
     print(text)
 
 def createImageFromPrompt(prompt):
@@ -120,15 +121,19 @@ def index():
     if request.method == 'POST':
         images = []
         prompt = request.form['prompt']
+        filepath = "backend/text.txt"
+        with open(filepath, "w") as fp:
+            fp.write(prompt)
+
         #generate sentiment analysis of the prompt
-        completion = openai.ChatCompletion.create(
-            model="gpt-4",
-            messages=[
-                {"role": "user", "content": "conduct sentiment analysis on this text:" +
-                prompt}
-            ],
-        )
-        prompt = completion.choices[0].message["content"]
+        # completion = openai.ChatCompletion.create(
+        #     model="gpt-4",
+        #     messages=[
+        #         {"role": "user", "content": "conduct sentiment analysis on this text:" +
+        #         prompt}
+        #     ],
+        # )
+        # prompt = completion.choices[0].message["content"]
         print(prompt)
         #simplify sentiment analysis into one to two words
         completion = openai.ChatCompletion.create(
@@ -165,5 +170,5 @@ def get_prompt_from_user():
 
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":    
     app.run()

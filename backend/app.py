@@ -18,8 +18,8 @@ from flask_cors import CORS
 
 HUME_API_KEY = "DszRVXebgKf0A5EdYEqjgP3edtjVusiVYCw8g5FThj9BmxAu"
 
-openai.organization = "org-dWtPz3lHouUKNmZD89G7NTBy"
-openai.api_key = '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'
+openai.organization = "org-OcpyA7VqpEkcFM2BWDVDBff3"
+openai.api_key = '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'
 
 openai.Model.list()
 
@@ -129,8 +129,8 @@ def index():
     if request.method == 'POST':
         print("success")
         images = []
-        prompt = request.json['message']
-        print(prompt)
+        prompt = request.form['prompt']
+
         # filepath = "backend/samples/best_cry_ever.mp4"
 
         filepath = "backend/samples/test.txt"

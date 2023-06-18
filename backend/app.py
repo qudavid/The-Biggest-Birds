@@ -17,7 +17,7 @@ from typing import List
 HUME_API_KEY = "DszRVXebgKf0A5EdYEqjgP3edtjVusiVYCw8g5FThj9BmxAu"
 
 openai.organization = "org-OcpyA7VqpEkcFM2BWDVDBff3"
-openai.api_key = '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'
+openai.api_key = ''
 
 openai.Model.list()
 

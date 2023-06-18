@@ -158,7 +158,7 @@ def index():
             ],
         )
         gpt_response = completion.choices[0].message["content"]
-        print(hume_response)
+        print("Hume response: " + hume_response)
         #simplify sentiment analysis into one to two words
         completion = openai.ChatCompletion.create(
             model="gpt-4",
@@ -168,12 +168,12 @@ def index():
             ],
         )
         combined_response = completion.choices[0].message["content"]
-        print(combined_response)
+        print("Combined response: " + combined_response)
         res = createImageFromPrompt(combined_response)
         if len(res) > 0:
             for img in res:
                 images.append(img['url'])
-        return images
+        return images[0]
         
 
     return render_template('index.html', **locals())

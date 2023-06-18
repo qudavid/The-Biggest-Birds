@@ -5,7 +5,7 @@ import { useTheme } from '@mui/styles';
 
 import useStyles from './styles';
 
-const blueLogo = 'https://www.adobe.com/express/learn/blog/media_196e5176585a00903655922c802ee1e507bb0a6e8.png?width=750&format=png&optimize=medium';
+const blueLogo = 'https://www.kadencewp.com/wp-content/uploads/2020/10/alogo-4.png';
 const redLogo = 'https://www.kadencewp.com/wp-content/uploads/2020/10/alogo-4.png';
 
 const Sidebar = ({ setMobileOpen }) => {

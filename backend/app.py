@@ -209,7 +209,7 @@ def upload():
 def addrec():
     if request.method == 'POST':
         try:
-            name = request.json['name']
+            name = request.json['username']
             print("adding name: " + name)
             # Connect to SQLite3 database and execute the INSERT
             with sqlite3.connect('database.db') as con:

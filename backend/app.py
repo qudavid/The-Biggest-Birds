@@ -108,8 +108,8 @@ def index():
     if request.method == 'POST':
         print("success")
         images = []
-        prompt = request.json['message']
-        print(prompt)
+        prompt = request.form['prompt']
+
         # filepath = "backend/samples/best_cry_ever.mp4"
 
         filepath = "backend/samples/test.txt"

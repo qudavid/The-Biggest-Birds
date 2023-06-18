@@ -2,11 +2,13 @@ import React, { useEffect } from 'react';
 import { Divider, List, ListItem, ListItemText, ListSubheader, ListItemIcon, Box, CircularProgress } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useTheme } from '@mui/styles';
+import blueLogo from "../../assets/dark-logo.png";
+import redLogo from "../../assets/light-logo.png";
 
 import useStyles from './styles';
 
-const blueLogo = 'https://www.kadencewp.com/wp-content/uploads/2020/10/alogo-4.png';
-const redLogo = 'https://www.kadencewp.com/wp-content/uploads/2020/10/alogo-4.png';
+
+
 
 const Sidebar = ({ setMobileOpen }) => {
   const theme = useTheme();

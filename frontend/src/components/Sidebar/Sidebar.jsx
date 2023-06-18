@@ -6,7 +6,7 @@ import blueLogo from "../../assets/dark-logo.png";
 import redLogo from "../../assets/light-logo.png";
 
 import useStyles from './styles';
-
+import "./style.css";
 
 
 
@@ -23,21 +23,25 @@ const Sidebar = ({ setMobileOpen }) => {
           alt="Logo"
         />
       </Link>
-      <Divider />
+      
       <List>
-        <Link className={classes.links} to="/">
-          <ListItem>
-            <ListItemText primary="Create" />
-          </ListItem>
-        </Link>
+        <div className="slide">
+          <Link className={classes.links} to="/">
+            <ListItem>
+              <ListItemText primary="Create" disableTypography={true} style={{padding:"5%", fontSize:"1.25em"}}/>
+            </ListItem>
+          </Link>
+        </div>
       </List>
-      <Divider />
+      
       <List>
-        <Link className={classes.links} to="/logs">
-          <ListItem>
-            <ListItemText primary="Logs" />
-          </ListItem>
-        </Link>
+        <div className="slide">
+          <Link className={classes.links} to="/logs">
+            <ListItem>
+              <ListItemText primary="Logs" disableTypography={true} style={{padding:"5%", fontSize:"1.25em"}}/>
+            </ListItem>
+          </Link>
+        </div>
       </List>
     </>
   );

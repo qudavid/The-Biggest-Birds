@@ -1,0 +1,12 @@
+.slide {
+    border: 0px solid teal;
+    border-radius: 0px;
+    -webkit-transition: ease-out 0.4s;
+    -moz-transition: ease-out 0.4s;
+    transition: ease-out 0.4s;
+}
+
+.slide:hover {
+    box-shadow: inset 400px 0 0 0 teal;
+    color:white;
+  }

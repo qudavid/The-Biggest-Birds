@@ -15,6 +15,8 @@ from typing import List
 
 from flask_cors import CORS
 
+import random
+
 
 
 HUME_API_KEY = "DszRVXebgKf0A5EdYEqjgP3edtjVusiVYCw8g5FThj9BmxAu"
@@ -207,12 +209,15 @@ def upload():
 def addrec():
     if request.method == 'POST':
         try:
-            id = request.json['id']
             name = request.json['name']
 
             # Connect to SQLite3 database and execute the INSERT
             with sqlite3.connect('database.db') as con:
                 cur = con.cursor()
+                ids = [id[0] for id in cur.execute("SELECT id FROM database")]
+                while randNumber in ids:
+                    randNumber = random.randit(1000, 9999)
+                id = randNumber
                 cur.execute("INSERT INTO database (id, name) VALUES (?,?)",(id, name))
                 con.commit()
                 msg = "Record successfully added to database"

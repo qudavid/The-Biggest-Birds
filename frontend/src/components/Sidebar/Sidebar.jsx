@@ -5,7 +5,7 @@ import { useTheme } from '@mui/styles';
 
 import useStyles from './styles';
 
-const blueLogo = 'https://img.favpng.com/9/15/6/white-sea-chevrolet-small-block-engine-white-house-organization-industry-png-favpng-v8m6DfgQy5cMJpWm7W9wrKx3K_t.jpg';
+const blueLogo = 'https://www.adobe.com/express/learn/blog/media_196e5176585a00903655922c802ee1e507bb0a6e8.png?width=750&format=png&optimize=medium';
 const redLogo = 'https://www.kadencewp.com/wp-content/uploads/2020/10/alogo-4.png';
 
 const Sidebar = ({ setMobileOpen }) => {
@@ -23,11 +23,19 @@ const Sidebar = ({ setMobileOpen }) => {
       </Link>
       <Divider />
       <List>
-        <ListSubheader>Create</ListSubheader>
+        <Link className={classes.links} to="/">
+          <ListItem>
+            <ListItemText primary="Create" />
+          </ListItem>
+        </Link>
       </List>
       <Divider />
       <List>
-        <ListSubheader>My Logs</ListSubheader>
+        <Link className={classes.links} to="/logs">
+          <ListItem>
+            <ListItemText primary="Logs" />
+          </ListItem>
+        </Link>
       </List>
     </>
   );

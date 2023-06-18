@@ -1,7 +1,7 @@
 import React from 'react';
 import { CssBaseline } from '@mui/material';
 import { Route, Switch } from 'react-router-dom';
-import { CharacterInformation, Logs, MyLog, Create, NavBar } from './';
+import { CharacterInformation, Logs, MyLog, Create, NavBar, MoodInformation } from './';
 import useStyles from './styles';
 
 const app = () => {
@@ -15,6 +15,9 @@ const app = () => {
         <Switch>
           <Route exact path="/character/:id">
             <CharacterInformation />
+          </Route>
+          <Route exact path="/mood/:id">
+            <MoodInformation />
           </Route>
           <Route exact path="/Logs">
             <Logs />

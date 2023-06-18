@@ -4,8 +4,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { deepmerge } from '@mui/utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+import ToggleColorModeProvider from './utils/ToggleColorMode';
 import App from './components/app';
-import { blue, green } from '@mui/material/colors';
 
 const theme = createTheme({
   palette: {
@@ -13,16 +13,16 @@ const theme = createTheme({
       main: '#000000',
     },
     secondary: {
-      main: '#ffffff',
+      main: '#000000',
     },
   },
 });
 
 ReactDom.render(
-  <ThemeProvider theme={theme}>
+  <ToggleColorModeProvider>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </ThemeProvider>,
+  </ToggleColorModeProvider>,
   document.getElementById('root'),
 );

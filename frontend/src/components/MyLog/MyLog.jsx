@@ -1,9 +1,12 @@
 import React from 'react';
+import { Box } from '@mui/material';
 
 const MyLog = () => {
   console.log(MyLog);
   return (
-    <div>MyLog</div>
+    <Box>
+      MyLog
+    </Box>
   );
 };
 

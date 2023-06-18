@@ -19,7 +19,7 @@ from flask_cors import CORS
 HUME_API_KEY = "DszRVXebgKf0A5EdYEqjgP3edtjVusiVYCw8g5FThj9BmxAu"
 
 openai.organization = "org-OcpyA7VqpEkcFM2BWDVDBff3"
-openai.api_key = ''
+openai.api_key = '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'
 
 openai.Model.list()
 
@@ -200,7 +200,7 @@ def get_prompt_from_user():
     # CORS(app, origins='http://127.0.0.1/3000', allow_headers=['Content-Type'], methods=['POST'])
 
     if request.method == 'POST':
-        message = request.args.get('message')
+        message = request.form.get(message)
 
         print(message)
         if message:

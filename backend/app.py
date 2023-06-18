@@ -46,9 +46,10 @@ def index():
     return render_template('index.html', **locals())
 
 
-@app.route('/message', methods=['GET'])
+@app.route('/message', methods=['GET', 'POST'])
 def get_prompt_from_user():
-    message = request.args.get('message')
+    if request.method == 'POST':
+        prompt = request.form['prompt']
 
     completion = openai.ChatCompletion.create(
         model="gpt-4",

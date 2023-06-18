@@ -1,7 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 
+import useStyles from './styles';
+
 const FileUpload = () => {
+  const classes = useStyles();
+
   const handleFileUpload = (event) => {
     // get the selected file from the input
     const file = event.target.files[0];
@@ -26,9 +30,13 @@ const FileUpload = () => {
   };
   // render a simple input element with an onChange event listener that calls the handleFileUpload function
   return (
-    <div>
-      <input type="file" onChange={handleFileUpload} />
-    </div>
+    <>
+      <div className={classes.fileCard}>
+        <div className={classes.fileInputs}>
+          <input className={classes.input} type="file" onChange={handleFileUpload} />
+        </div>
+      </div>
+    </>
   );
 };
 export default FileUpload;

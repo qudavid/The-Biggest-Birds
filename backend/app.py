@@ -1,3 +1,4 @@
+import sqlite3
 from flask import Flask, request, render_template
 import os
 import openai
@@ -18,8 +19,8 @@ from flask_cors import CORS
 
 HUME_API_KEY = "DszRVXebgKf0A5EdYEqjgP3edtjVusiVYCw8g5FThj9BmxAu"
 
-openai.organization = "org-OcpyA7VqpEkcFM2BWDVDBff3"
-openai.api_key = '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'
+openai.organization = "org-dWtPz3lHouUKNmZD89G7NTBy"
+openai.api_key = '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'
 
 openai.Model.list()
 
@@ -43,21 +44,6 @@ def print_emotions(emotions: List[Dict[str, Any]]) -> None:
     emotion_map = {e["name"]: e["score"] for e in emotions}
     for emotion in ["Excitement", "Joy", "Sadness", "Anger", "Confusion", "Fear"]:
         print(f"- {emotion}: {emotion_map[emotion]:4f}")
-
-# emotion_embeddings = []
-# full_predictions = job.get_predictions()
-# for source in full_predictions:
-#     predictions = source["results"]["predictions"]
-#     for prediction in predictions:
-#         language_predictions = prediction["models"]["language"]["grouped_predictions"]
-#         for language_prediction in language_predictions:
-#             for chunk in language_prediction["predictions"]:
-#                 print(chunk["text"])
-#                 print_emotions(chunk["emotions"])
-#                 emotion_embeddings.append(chunk["emotions"])
-#                 print()
-
-
 
 class Stringifier:
     RANGES = [(0.26, 0.35), (0.35, 0.44), (0.44, 0.53), (0.53, 0.62), (0.62, 0.71), (0.71, 1.0)]
@@ -112,13 +98,6 @@ class Stringifier:
 
         # Return all phrases separated by conjunctions
         return ", ".join(phrases[:-1]) + ", and " + phrases[-1]
-    
-# stringifier = Stringifier()
-# for emotion_embedding in emotion_embeddings:
-#     emotion_scores = [emotion["score"] for emotion in emotion_embedding]
-#     text = stringifier.scores_to_text(emotion_scores)
-
-    # print(text)
 
 def createImageFromPrompt(prompt):
     response = openai.Image.create(prompt=prompt, n=2, size="512x512")
@@ -223,6 +202,27 @@ def upload():
     file = request.files['file']
     file.save('backend/samples/file')
     return
+
+@app.route("/addrec", methods = ['POST', 'GET'])
+def addrec():
+    if request.method == 'POST':
+        try:
+            id = request.form['id']
+            name = request.form['name']
+
+            # Connect to SQLite3 database and execute the INSERT
+            with sqlite3.connect('database.db') as con:
+                cur = con.cursor()
+                cur.execute("INSERT INTO students (id, name) VALUES (?,?)",(id, name))
+                con.commit()
+                msg = "Record successfully added to database"
+        except:
+            con.rollback()
+            msg = "Error in the INSERT"
+        finally:
+            con.close()
+            # Send the transaction message to result.html
+            return render_template('result.html',msg=msg)
 
 
 

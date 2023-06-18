@@ -10,31 +10,41 @@ openai.Model.list()
 app = Flask(__name__)
 
 def createImageFromPrompt(prompt):
-    response = openai.Image.create(prompt=prompt, n=2, size="512x512")
+    response = openai.Image.create(prompt=prompt, n=8, size="512x512")
     return response['data']
 
 @app.route('/', methods=["GET", "POST"])
 def index():
-<<<<<<< HEAD
-    response = openai.Image.create(
-    prompt="Asian guy with very short blonde hair and modern glasses wearing a supreme black jacket, silver necklace chains, and baggy camo pants drawn in anime style",
-    n=2,
-    size="1024x1024"
-    )
-    return response["data"][0]["url"]
-=======
     if request.method == 'POST':
         images = []
         prompt = request.form['prompt']
+        #generate sentiment analysis of the prompt
+        completion = openai.ChatCompletion.create(
+            model="gpt-4",
+            messages=[
+                {"role": "user", "content": "conduct sentiment analysis on this text:" +
+                prompt}
+            ],
+        )
+        prompt = completion.choices[0].message["content"]
+        print(prompt)
+        #simplify sentiment analysis into one to two words
+        completion = openai.ChatCompletion.create(
+            model="gpt-4",
+            messages=[
+                {"role": "user", "content": "describe an artwork that represents this sentiment in three sentences:" +
+                prompt}
+            ],
+        )
+        prompt = completion.choices[0].message["content"]
+        print(prompt)
         res = createImageFromPrompt(prompt)
-
         if len(res) > 0:
             for img in res:
                 images.append(img['url'])
 
     return render_template('index.html', **locals())
 
->>>>>>> 979aebcfdfc644a3c1339821468f16c0fe55e47c
 
 @app.route('/message', methods=['GET'])
 def get_prompt_from_user():

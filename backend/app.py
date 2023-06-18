@@ -18,8 +18,8 @@ from flask_cors import CORS
 
 HUME_API_KEY = "DszRVXebgKf0A5EdYEqjgP3edtjVusiVYCw8g5FThj9BmxAu"
 
-openai.organization = "org-OcpyA7VqpEkcFM2BWDVDBff3"
-openai.api_key = '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'
+openai.organization = "org-dWtPz3lHouUKNmZD89G7NTBy"
+openai.api_key = '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'
 
 openai.Model.list()
 
@@ -127,9 +127,10 @@ def createImageFromPrompt(prompt):
 @app.route('/', methods=["GET", "POST"])
 def index():
     if request.method == 'POST':
+        print("success")
         images = []
-        prompt = request.form['prompt']
-
+        prompt = request.json['message']
+        print(prompt)
         # filepath = "backend/samples/best_cry_ever.mp4"
 
         filepath = "backend/samples/test.txt"
@@ -191,6 +192,8 @@ def index():
         if len(res) > 0:
             for img in res:
                 images.append(img['url'])
+        return images
+        
 
     return render_template('index.html', **locals())
 
@@ -211,8 +214,9 @@ def get_prompt_from_user():
                 ],
                 temperature=1.00
             )
-            print(completion.choices[0].message)
-            return completion.choices[0].message
+            returnStr = completion.choices[0].message["content"]
+            print(returnStr)
+            return returnStr
 
 @app.route('/upload', methods=['POST'])
 def upload():

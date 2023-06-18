@@ -12,7 +12,7 @@ const Form = () => {
   const handleSubmit = async (event) => {
     console.log(post);
     event.preventDefault();
-    await axios.post('http://127.0.0.1:5000/message', {
+    await axios.post('http://127.0.0.1:5000', {
       message: post,
     })
       .then((response) => {

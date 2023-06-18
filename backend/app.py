@@ -2,8 +2,8 @@ from flask import Flask, request, render_template
 import os
 import openai
 
-openai.organization = "org-eLa1AesrPBLo5REyigH7wlXk"
-openai.api_key = "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"
+openai.organization = ""
+openai.api_key = ''
 
 openai.Model.list()
 
@@ -46,10 +46,10 @@ def index():
     return render_template('index.html', **locals())
 
 
-@app.route('/message', methods=['GET', 'POST'])
+@app.route('/message', methods=['GET'])
 def get_prompt_from_user():
     if request.method == 'POST':
-        message = request.form['message']
+        message = request.args.get('message')
 
     completion = openai.ChatCompletion.create(
         model="gpt-4",

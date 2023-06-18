@@ -9,26 +9,24 @@ from pathlib import Path
 
 from typing import Any, Dict, List
 
+from flask_cors import CORS
 
 import numpy as np
 from typing import List
 
-from flask_cors import CORS
-
 import random
-
 
 
 HUME_API_KEY = "DszRVXebgKf0A5EdYEqjgP3edtjVusiVYCw8g5FThj9BmxAu"
 
 openai.organization = "org-dWtPz3lHouUKNmZD89G7NTBy"
-openai.api_key = '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'
+openai.api_key = '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'
 
 openai.Model.list()
 
 app = Flask(__name__)
-
 CORS(app)
+
 
 # filepath = "backend/samples/best_cry_ever.mp4"
 # client = HumeBatchClient(HUME_API_KEY)

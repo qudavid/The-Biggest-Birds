@@ -12,6 +12,8 @@ from typing import Any, Dict, List
 import numpy as np
 from typing import List
 
+from flask_cors import CORS
+
 
 
 HUME_API_KEY = "DszRVXebgKf0A5EdYEqjgP3edtjVusiVYCw8g5FThj9BmxAu"
@@ -23,6 +25,7 @@ openai.Model.list()
 
 app = Flask(__name__)
 
+CORS(app)
 
 # filepath = "backend/samples/best_cry_ever.mp4"
 # client = HumeBatchClient(HUME_API_KEY)
@@ -192,20 +195,25 @@ def index():
     return render_template('index.html', **locals())
 
 
-@app.route('/message', methods=['GET'])
+@app.route('/message', methods=['POST'])
 def get_prompt_from_user():
+    # CORS(app, origins='http://127.0.0.1/3000', allow_headers=['Content-Type'], methods=['POST'])
+
     if request.method == 'POST':
         message = request.args.get('message')
 
-    completion = openai.ChatCompletion.create(
-        model="gpt-4",
-        messages=[
-            {"role": "user", "content": "Write a children's story that rhymes about" +
-              message + "with a moral or lesson at the end of the story."}
-        ],
-        temperature=1.95
-    )
-    return completion.choices[0].message
+        print(message)
+        if message:
+
+            completion = openai.ChatCompletion.create(
+                model="gpt-4",
+                messages=[
+                    {"role": "user", "content": "Write a children's story that rhymes about" +
+                    message + "with a moral or lesson at the end of the story."}
+                ],
+                temperature=1.95
+            )
+            return completion.choices[0].message
 
 @app.route('/upload', methods=['POST'])
 def upload():

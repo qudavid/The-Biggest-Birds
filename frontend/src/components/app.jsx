@@ -1,7 +1,7 @@
 import React from 'react';
 import { CssBaseline } from '@mui/material';
 import { Route, Switch } from 'react-router-dom';
-import { CharacterInformation, Logs, MyLog, Create, NavBar, MoodInformation } from './';
+import { Logs, MyLog, Create, NavBar, MoodInformation, SignIn } from '.';
 import useStyles from './styles';
 
 const app = () => {
@@ -13,8 +13,8 @@ const app = () => {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <Switch>
-          <Route exact path="/character/:id">
-            <CharacterInformation />
+          <Route exact path="/login">
+            <SignIn />
           </Route>
           <Route exact path="/mood/:id">
             <MoodInformation />

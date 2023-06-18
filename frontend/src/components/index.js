@@ -8,3 +8,4 @@ export { default as Search } from './Search/Search';
 export { default as MoodInformation } from './MoodInformation/MoodInformation';
 export { default as FileUpload } from './FileUpload/FileUpload';
 export { default as Form } from './Form/Form';
+export { default as SignIn } from './SignIn/SignIn';

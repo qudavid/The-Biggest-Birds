@@ -9,7 +9,6 @@ import useStyles from './styles';
 import "./style.css";
 
 
-
 const Sidebar = ({ setMobileOpen }) => {
   const theme = useTheme();
   const classes = useStyles();

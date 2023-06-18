@@ -11,6 +11,7 @@ const SignIn = () => {
   };
 
   const handleSignIn = async () => {
+    console.log(name);
     setIsAuthenticated((prev) => !prev);
     await axios.post('http://127.0.0.1:5000/addrec', {
       username: name,

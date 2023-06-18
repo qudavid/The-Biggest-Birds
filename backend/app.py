@@ -21,8 +21,8 @@ import random
 
 HUME_API_KEY = "DszRVXebgKf0A5EdYEqjgP3edtjVusiVYCw8g5FThj9BmxAu"
 
-openai.organization = ""
-openai.api_key = ''
+openai.organization = "org-dWtPz3lHouUKNmZD89G7NTBy"
+openai.api_key = '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'
 
 openai.Model.list()
 
@@ -110,7 +110,7 @@ def index():
     if request.method == 'POST':
         print("success")
         images = []
-        prompt = request.form['prompt']
+        prompt = request.json['message']
 
         # filepath = "backend/samples/best_cry_ever.mp4"
 
@@ -210,7 +210,7 @@ def addrec():
     if request.method == 'POST':
         try:
             name = request.json['name']
-
+            print("adding name: " + name)
             # Connect to SQLite3 database and execute the INSERT
             with sqlite3.connect('database.db') as con:
                 cur = con.cursor()

@@ -9,7 +9,7 @@ import { Sidebar, Search } from '..';
 import useStyles from './styles';
 
 const NavBar = () => {
-  const isAuthenticated = false;
+  const isAuthenticated = true;
   const [mobileOpen, setMobileOpen] = useState(false);
   const classes = useStyles();
   const isMobile = useMediaQuery('(max-width:600px)');

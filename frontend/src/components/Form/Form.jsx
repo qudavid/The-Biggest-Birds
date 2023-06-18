@@ -28,7 +28,7 @@ const Form = () => {
           <TextField onChange={handleInput} label="How was your day?" multiline rows={20} placeholder="Type your message here" variant="outlined" fullWidth required />
         </Grid>
         <Grid item xs={12}>
-          <Button type="generate" variant="contained" color="primary" fullWidth>Submit</Button>
+          <Button type="generate" variant="contained" color="primary" fullWidth href="/mylog/:id">Submit</Button>
         </Grid>
       </Grid>
     </form>

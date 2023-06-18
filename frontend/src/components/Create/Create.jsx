@@ -7,11 +7,11 @@ import Form from '../Form/Form';
 
 const Create = () => (
   <>
-    <Container maxWidth="xl">
+    <Container maxWidth="xl" >
       <Grid container spacing={3} padding="20px">
         <Grid item xs={12} md={6} lg={12}>
           <Typography variant="h2" color="textPrimary" textAlign="center" gutterBottom>
-                Be real, be moody.
+                <strong>Be real, be moody.</strong>
           </Typography>
         </Grid>
         <Grid item xs={12} md={6} lg={12}>

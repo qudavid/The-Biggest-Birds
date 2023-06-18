@@ -19,7 +19,7 @@ from flask_cors import CORS
 HUME_API_KEY = "DszRVXebgKf0A5EdYEqjgP3edtjVusiVYCw8g5FThj9BmxAu"
 
 openai.organization = "org-OcpyA7VqpEkcFM2BWDVDBff3"
-openai.api_key = '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'
+openai.api_key = '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'
 
 openai.Model.list()
 

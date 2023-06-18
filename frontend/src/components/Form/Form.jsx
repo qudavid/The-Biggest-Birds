@@ -3,12 +3,10 @@ import { Grid, TextField, Button, Card, CardContent, Typography } from '@mui/mat
 import axios from 'axios';
 
 const Form = () => {
-  const [post, setPost] = useState({
-    description: '',
-  });
+  const [post, setPost] = useState('');
 
   const handleInput = (event) => {
-    setPost({ description: event.target.value });
+    setPost(event.target.value);
   };
 
   const handleSubmit = async (event) => {

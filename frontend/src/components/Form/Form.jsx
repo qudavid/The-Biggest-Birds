@@ -8,10 +8,11 @@ const Form = () => {
   });
 
   const handleInput = (event) => {
-    setPost({ ...post, [event.target.name]: event.target.event });
+    setPost({ description: event.target.value });
   };
 
   const handleSubmit = async (event) => {
+    console.log(post);
     event.preventDefault();
     await axios.post('http://127.0.0.1:5000/message', { post })
       .then((response) => {

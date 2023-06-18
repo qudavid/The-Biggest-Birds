@@ -21,7 +21,7 @@ const Form = () => {
    })
      .then((response) => {
       console.log(response);
-       setImage(response);
+       setImage(response.data);
      })
      .catch((error) => {
        console.log(error);

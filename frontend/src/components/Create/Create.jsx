@@ -9,12 +9,12 @@ const Create = () => (
   <>
     <Container maxWidth="xl" >
       <Grid container spacing={3} padding="20px">
-        <Grid item xs={12} md={6} lg={12}>
+        <Grid item xs={12} md={12} lg={12}>
           <Typography variant="h2" color="textPrimary" textAlign="center" gutterBottom>
                 <strong>Be real, be moody.</strong>
           </Typography>
         </Grid>
-        <Grid item xs={12} md={6} lg={12}>
+        <Grid item xs={12} md={12} lg={12}>
           <Card style={{ maxWidth: 800, margin: '0 auto' }}>
             <CardContent>
               <Typography variant="h6" color="textPrimary" component="p" textAlign="center" gutterBottom>

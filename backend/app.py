@@ -20,7 +20,7 @@ from flask_cors import CORS
 HUME_API_KEY = "DszRVXebgKf0A5EdYEqjgP3edtjVusiVYCw8g5FThj9BmxAu"
 
 openai.organization = "org-dWtPz3lHouUKNmZD89G7NTBy"
-openai.api_key = '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'
+openai.api_key = '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'
 
 openai.Model.list()
 
@@ -207,13 +207,13 @@ def upload():
 def addrec():
     if request.method == 'POST':
         try:
-            id = request.form['id']
-            name = request.form['name']
+            id = request.json['id']
+            name = request.json['name']
 
             # Connect to SQLite3 database and execute the INSERT
             with sqlite3.connect('database.db') as con:
                 cur = con.cursor()
-                cur.execute("INSERT INTO students (id, name) VALUES (?,?)",(id, name))
+                cur.execute("INSERT INTO database (id, name) VALUES (?,?)",(id, name))
                 con.commit()
                 msg = "Record successfully added to database"
         except:
@@ -221,8 +221,10 @@ def addrec():
             msg = "Error in the INSERT"
         finally:
             con.close()
-            # Send the transaction message to result.html
+
             return render_template('result.html',msg=msg)
+    else:
+        return "no post" 
 
 
 

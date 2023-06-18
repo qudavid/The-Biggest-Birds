@@ -8,7 +8,7 @@ const FileUpload = () => {
     // create a new FormData object and append the file to it
     const formData = new FormData();
     formData.append('file', file);
-    // make a POST request to the File Upload API with the FormData object and Rapid API headers
+
     axios
       .post('http://127.0.0.1:5000//upload', formData, {
         headers: {

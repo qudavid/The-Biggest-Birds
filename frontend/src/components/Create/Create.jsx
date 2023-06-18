@@ -3,6 +3,7 @@ import { Grid, TextField, Button, Card, CardContent, Typography } from '@mui/mat
 import axios from 'axios';
 import { FileUpload } from '..';
 
+import Form from '../Form/Form';
 import useStyles from './styles';
 
 const Create = () => {
@@ -11,6 +12,7 @@ const Create = () => {
   const classes = useStyles();
 
   const postMessage = async () => {
+    console.log(1);
     await axios.post('http://127.0.0.1:5000/message', {
       message: valueRef.current.value,
     })
@@ -33,16 +35,7 @@ const Create = () => {
             <Typography variant="body2" color="textSecondary" component="p" gutterBottom>
               Describe your day and we will generate an abstract art of your mood.
             </Typography>
-            <form>
-              <Grid container spacing={1}>
-                <Grid item xs={12}>
-                  <TextField label="How was your day" multiline rows={20} placeholder="Type your message here" variant="outlined" inputRef={valueRef} fullWidth required />
-                </Grid>
-                <Grid item xs={12}>
-                  <Button type="generate" variant="contained" color="primary" onClick={postMessage} fullWidth>Submit</Button>
-                </Grid>
-              </Grid>
-            </form>
+            <Form />
           </CardContent>
         </Card>
       </Grid>

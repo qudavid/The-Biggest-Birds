@@ -11,11 +11,13 @@ const Search = () => {
     <div className={classes.searchContainer}>
       <TextField
         variant="standard"
+        
         InputProps={{
           className: classes.input,
           startAdornment: (
             <InputAdornment position="start">
               <SearchIcon />
+              <p>Search for friends</p>
             </InputAdornment>
           ),
         }}

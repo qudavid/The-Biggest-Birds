@@ -19,6 +19,9 @@ const ToggleColorMode = ({ children }) => {
             // palette values for light mode
             primary: teal,
             divider: grey[900],
+            background: {
+              default: "#e4f0e2"
+            },
             text: {
               primary: grey[800],
               secondary: grey[900],

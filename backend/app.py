@@ -10,7 +10,7 @@ openai.Model.list()
 app = Flask(__name__)
 
 def createImageFromPrompt(prompt):
-    response = openai.Image.create(prompt=prompt, n=2, size="512x512")
+    response = openai.Image.create_edit(prompt=prompt, n=2, size="512x512")
     return response['data']
 
 @app.route('/', methods=["GET", "POST"])

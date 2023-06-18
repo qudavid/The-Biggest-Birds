@@ -17,7 +17,7 @@ from typing import List
 HUME_API_KEY = "DszRVXebgKf0A5EdYEqjgP3edtjVusiVYCw8g5FThj9BmxAu"
 
 openai.organization = "org-OcpyA7VqpEkcFM2BWDVDBff3"
-openai.api_key = ''
+openai.api_key = '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'
 
 openai.Model.list()
 
@@ -162,29 +162,29 @@ def index():
         stringifier = Stringifier()
         for emotion_embedding in emotion_embeddings:
             emotion_scores = [emotion["score"] for emotion in emotion_embedding]
-            prompt = stringifier.scores_to_text(emotion_scores)
+            hume_response = stringifier.scores_to_text(emotion_scores)
 
-        #generate sentiment analysis of the prompt
-        # completion = openai.ChatCompletion.create(
-        #     model="gpt-4",
-        #     messages=[
-        #         {"role": "user", "content": "conduct sentiment analysis on this text:" +
-        #         prompt}
-        #     ],
-        # )
-        # prompt = completion.choices[0].message["content"]
-        print(prompt)
+        # generate sentiment analysis of the prompt
+        completion = openai.ChatCompletion.create(
+            model="gpt-4",
+            messages=[
+                {"role": "user", "content": "summarize the following in one sentence:" +
+                prompt}
+            ],
+        )
+        gpt_response = completion.choices[0].message["content"]
+        print(hume_response)
         #simplify sentiment analysis into one to two words
         completion = openai.ChatCompletion.create(
             model="gpt-4",
             messages=[
                 {"role": "user", "content": "describe an artwork that represents this sentiment in three sentences:" +
-                prompt}
+                hume_response + gpt_response}
             ],
         )
-        prompt = completion.choices[0].message["content"]
-        print(prompt)
-        res = createImageFromPrompt(prompt)
+        combined_response = completion.choices[0].message["content"]
+        print(combined_response)
+        res = createImageFromPrompt(combined_response)
         if len(res) > 0:
             for img in res:
                 images.append(img['url'])

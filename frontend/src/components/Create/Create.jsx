@@ -10,9 +10,9 @@ const Create = () => {
 
   const classes = useStyles();
 
-  const postFile = async () => {
-    await axios.post('http://127.0.0.1:5000/index', {
-      prompt: valueRef.current.value,
+  const postMessage = async () => {
+    await axios.post('http://127.0.0.1:5000/message', {
+      message: valueRef.current.value,
     })
       .then((response) => {
         console.log(response);
@@ -39,7 +39,7 @@ const Create = () => {
                   <TextField label="How was your day" multiline rows={20} placeholder="Type your message here" variant="outlined" inputRef={valueRef} fullWidth required />
                 </Grid>
                 <Grid item xs={12}>
-                  <Button type="generate" variant="contained" color="primary" onClick={postFile} fullWidth>Submit</Button>
+                  <Button type="generate" variant="contained" color="primary" onClick={postMessage} fullWidth>Submit</Button>
                 </Grid>
               </Grid>
             </form>

@@ -1,5 +1,5 @@
 import sqlite3
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify
 import os
 import openai
 from hume import HumeBatchClient
@@ -225,6 +225,22 @@ def addrec():
             return render_template('result.html',msg=msg)
     else:
         return "no post" 
+
+@app.route("/queries", methods=['GET'])
+def query():
+    with sqlite3.connect('database.db') as con:
+        cur = con.cursor()
+        cur.execute("SELECT * FROM queries")
+        rows = cur.fetchall()
+
+        queries = []
+        for row in rows:
+            query = {'id': row[0], 'name': row[1]}
+            queries.append(query)
+        
+        return jsonify(queries)
+
+
 
 
 

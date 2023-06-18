@@ -7,22 +7,7 @@ import Form from '../Form/Form';
 import useStyles from './styles';
 
 const Create = () => {
-  const valueRef = useRef('');
-
   const classes = useStyles();
-
-  const postMessage = async () => {
-    console.log(1);
-    await axios.post('http://127.0.0.1:5000/message', {
-      message: valueRef.current.value,
-    })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
 
   return (
     <Grid container className={classes.containerSpaceAround} paddingTop="100px">

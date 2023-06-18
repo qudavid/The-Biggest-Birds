@@ -19,7 +19,7 @@ from flask_cors import CORS
 HUME_API_KEY = "DszRVXebgKf0A5EdYEqjgP3edtjVusiVYCw8g5FThj9BmxAu"
 
 openai.organization = "org-OcpyA7VqpEkcFM2BWDVDBff3"
-openai.api_key = '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'
+openai.api_key = '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'
 
 openai.Model.list()
 
@@ -197,23 +197,22 @@ def index():
 
 @app.route('/message', methods=['POST'])
 def get_prompt_from_user():
+    print('success')
     # CORS(app, origins='http://127.0.0.1/3000', allow_headers=['Content-Type'], methods=['POST'])
-
     if request.method == 'POST':
-        message = request.form.get(message)
-
-        print(message)
-        if message:
+        var = request.json['message']
+        print(var)
+        if var:
 
             completion = openai.ChatCompletion.create(
                 model="gpt-4",
                 messages=[
                     {"role": "user", "content": "Write a children's story that rhymes about" +
-                    message + "with a moral or lesson at the end of the story."}
+                    var + "with a moral or lesson at the end of the story."}
                 ],
                 temperature=1.95
             )
-            return completion.choices[0].message
+            return completion.choices[0].messages
 
 @app.route('/upload', methods=['POST'])
 def upload():

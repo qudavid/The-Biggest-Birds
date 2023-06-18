@@ -7,7 +7,7 @@ from hume.models.config import LanguageConfig
 HUME_API_KEY = "DszRVXebgKf0A5EdYEqjgP3edtjVusiVYCw8g5FThj9BmxAu"
 
 openai.organization = "org-OcpyA7VqpEkcFM2BWDVDBff3"
-openai.api_key = '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'
+openai.api_key = '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'
 
 openai.Model.list()
 
@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 from pathlib import Path
 
-filepath = "backend/test.txt"
+filepath = "backend/samples/best_cry_ever.mp4"
 client = HumeBatchClient(HUME_API_KEY)
 config = LanguageConfig(granularity="sentence", identify_speakers=True)
 job = client.submit_job(None, [config], files=[filepath])
@@ -121,9 +121,9 @@ def index():
     if request.method == 'POST':
         images = []
         prompt = request.form['prompt']
-        filepath = "backend/text.txt"
-        with open(filepath, "w") as fp:
-            fp.write(prompt)
+        # filepath = "backend/samples/lonely-scarf-video.mp4"
+        # with open(filepath, "w") as fp:
+        #     fp.write(prompt)
 
         #generate sentiment analysis of the prompt
         # completion = openai.ChatCompletion.create(
@@ -167,6 +167,12 @@ def get_prompt_from_user():
         temperature=1.95
     )
     return completion.choices[0].message
+
+@app.route('/upload', methods=['POST'])
+def upload():
+    file = request.files['file']
+    file.save('backend/samples/file')
+    return
 
 
 

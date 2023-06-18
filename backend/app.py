@@ -2,15 +2,15 @@ from flask import Flask, request, render_template
 import os
 import openai
 
-openai.organization = ""
-openai.api_key = ""
+openai.organization = "org-eLa1AesrPBLo5REyigH7wlXk"
+openai.api_key = "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"
 
 openai.Model.list()
 
 app = Flask(__name__)
 
 def createImageFromPrompt(prompt):
-    response = openai.Image.create_edit(prompt=prompt, n=2, size="512x512")
+    response = openai.Image.create(prompt=prompt, n=2, size="512x512")
     return response['data']
 
 @app.route('/', methods=["GET", "POST"])
@@ -49,7 +49,7 @@ def index():
 @app.route('/message', methods=['GET', 'POST'])
 def get_prompt_from_user():
     if request.method == 'POST':
-        prompt = request.form['prompt']
+        message = request.form['message']
 
     completion = openai.ChatCompletion.create(
         model="gpt-4",

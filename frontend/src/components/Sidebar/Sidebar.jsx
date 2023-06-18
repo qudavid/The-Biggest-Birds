@@ -7,9 +7,6 @@ import redLogo from "../../assets/light-logo.png";
 
 import useStyles from './styles';
 
-
-
-
 const Sidebar = ({ setMobileOpen }) => {
   const theme = useTheme();
   const classes = useStyles();

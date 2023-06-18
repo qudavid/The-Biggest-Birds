@@ -22,7 +22,7 @@ import random
 HUME_API_KEY = "DszRVXebgKf0A5EdYEqjgP3edtjVusiVYCw8g5FThj9BmxAu"
 
 openai.organization = "org-dWtPz3lHouUKNmZD89G7NTBy"
-openai.api_key = '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'
+openai.api_key = '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'
 
 openai.Model.list()
 
@@ -173,7 +173,8 @@ def index():
         if len(res) > 0:
             for img in res:
                 images.append(img['url'])
-        return images
+        print(images[0])
+        return images[0]
         
 
     return render_template('index.html', **locals())

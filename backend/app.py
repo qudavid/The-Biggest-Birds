@@ -4,28 +4,36 @@ import openai
 from hume import HumeBatchClient
 from hume.models.config import LanguageConfig
 
+from pathlib import Path
+
+from typing import Any, Dict, List
+
+
+import numpy as np
+from typing import List
+
+
+
 HUME_API_KEY = "DszRVXebgKf0A5EdYEqjgP3edtjVusiVYCw8g5FThj9BmxAu"
 
 openai.organization = "org-OcpyA7VqpEkcFM2BWDVDBff3"
-openai.api_key = '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'
+openai.api_key = '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'
 
 openai.Model.list()
 
 app = Flask(__name__)
 
-from pathlib import Path
 
-filepath = "backend/samples/best_cry_ever.mp4"
-client = HumeBatchClient(HUME_API_KEY)
-config = LanguageConfig(granularity="sentence", identify_speakers=True)
-job = client.submit_job(None, [config], files=[filepath])
+# filepath = "backend/samples/best_cry_ever.mp4"
+# client = HumeBatchClient(HUME_API_KEY)
+# config = LanguageConfig(granularity="sentence", identify_speakers=True)
+# job = client.submit_job(None, [config], files=[filepath])
 
-print("Running...", job)
+# print("Running...", job)
 
-job.await_complete()
-print("Job completed with status: ", job.get_status())
+# job.await_complete()
+# print("Job completed with status: ", job.get_status())
 
-from typing import Any, Dict, List
 
 
 def print_emotions(emotions: List[Dict[str, Any]]) -> None:
@@ -33,22 +41,19 @@ def print_emotions(emotions: List[Dict[str, Any]]) -> None:
     for emotion in ["Excitement", "Joy", "Sadness", "Anger", "Confusion", "Fear"]:
         print(f"- {emotion}: {emotion_map[emotion]:4f}")
 
-emotion_embeddings = []
-full_predictions = job.get_predictions()
-for source in full_predictions:
-    predictions = source["results"]["predictions"]
-    for prediction in predictions:
-        language_predictions = prediction["models"]["language"]["grouped_predictions"]
-        for language_prediction in language_predictions:
-            for chunk in language_prediction["predictions"]:
-                print(chunk["text"])
-                print_emotions(chunk["emotions"])
-                emotion_embeddings.append(chunk["emotions"])
-                print()
+# emotion_embeddings = []
+# full_predictions = job.get_predictions()
+# for source in full_predictions:
+#     predictions = source["results"]["predictions"]
+#     for prediction in predictions:
+#         language_predictions = prediction["models"]["language"]["grouped_predictions"]
+#         for language_prediction in language_predictions:
+#             for chunk in language_prediction["predictions"]:
+#                 print(chunk["text"])
+#                 print_emotions(chunk["emotions"])
+#                 emotion_embeddings.append(chunk["emotions"])
+#                 print()
 
-
-import numpy as np
-from typing import List
 
 
 class Stringifier:
@@ -105,12 +110,12 @@ class Stringifier:
         # Return all phrases separated by conjunctions
         return ", ".join(phrases[:-1]) + ", and " + phrases[-1]
     
-stringifier = Stringifier()
-for emotion_embedding in emotion_embeddings:
-    emotion_scores = [emotion["score"] for emotion in emotion_embedding]
-    text = stringifier.scores_to_text(emotion_scores)
+# stringifier = Stringifier()
+# for emotion_embedding in emotion_embeddings:
+#     emotion_scores = [emotion["score"] for emotion in emotion_embedding]
+#     text = stringifier.scores_to_text(emotion_scores)
 
-    print(text)
+    # print(text)
 
 def createImageFromPrompt(prompt):
     response = openai.Image.create(prompt=prompt, n=2, size="512x512")
@@ -121,9 +126,43 @@ def index():
     if request.method == 'POST':
         images = []
         prompt = request.form['prompt']
-        # filepath = "backend/samples/lonely-scarf-video.mp4"
-        # with open(filepath, "w") as fp:
-        #     fp.write(prompt)
+
+        # filepath = "backend/samples/best_cry_ever.mp4"
+
+        filepath = "backend/samples/test.txt"
+        with open(filepath, "w") as fp:
+            fp.write(prompt)
+
+
+        client = HumeBatchClient(HUME_API_KEY)
+        config = LanguageConfig(granularity="sentence", identify_speakers=True)
+        job = client.submit_job(None, [config], files=[filepath])
+
+        print("Running...", job)
+
+        job.await_complete()
+        print("Job completed with status: ", job.get_status())
+
+
+
+        emotion_embeddings = []
+        full_predictions = job.get_predictions()
+        for source in full_predictions:
+            predictions = source["results"]["predictions"]
+            for prediction in predictions:
+                language_predictions = prediction["models"]["language"]["grouped_predictions"]
+                for language_prediction in language_predictions:
+                    for chunk in language_prediction["predictions"]:
+                        print(chunk["text"])
+                        print_emotions(chunk["emotions"])
+                        emotion_embeddings.append(chunk["emotions"])
+                        print()
+
+
+        stringifier = Stringifier()
+        for emotion_embedding in emotion_embeddings:
+            emotion_scores = [emotion["score"] for emotion in emotion_embedding]
+            prompt = stringifier.scores_to_text(emotion_scores)
 
         #generate sentiment analysis of the prompt
         # completion = openai.ChatCompletion.create(
